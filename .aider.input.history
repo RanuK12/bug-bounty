@@ -1,0 +1,32 @@
+
+# 2026-06-26 17:48:33.048970
++Fix issue #8520: Search endpoint should validate and trim query input.
++
++Changes needed:
++1. Create a new file apps/api/src/validators/search.js with a Zod schema for search query: z.string().trim().max(200).optional().default('')
++2. In apps/api/src/controllers/searchController.js: import the schema, use .parse() on req.query.q, pass the validated query to globalSearch
++3. In apps/api/src/middleware/errorHandler.js: detect ZodError and return HTTP 400 with validation message instead of 500
++
++Keep the code style consistent with the existing codebase (import style, zod usage like in job.js validator).
++
++Criteria from the issue:
++- coerce to a string ✓ (Zod does this by default with .string())
++- trim surrounding whitespace ✓ (.trim())
++- reject overly long input with 400 ✓ (.max(200) + ZodError → 400)
++- keep empty or omitted queries safe ✓ (.optional().default(''))
+
+# 2026-06-26 17:48:33.049299
++Fix issue #8520: Search endpoint should validate and trim query input.
++
++Changes needed:
++1. Create a new file apps/api/src/validators/search.js with a Zod schema for search query: z.string().trim().max(200).optional().default('')
++2. In apps/api/src/controllers/searchController.js: import the schema, use .parse() on req.query.q, pass the validated query to globalSearch
++3. In apps/api/src/middleware/errorHandler.js: detect ZodError and return HTTP 400 with validation message instead of 500
++
++Keep the code style consistent with the existing codebase (import style, zod usage like in job.js validator).
++
++Criteria from the issue:
++- coerce to a string ✓ (Zod does this by default with .string())
++- trim surrounding whitespace ✓ (.trim())
++- reject overly long input with 400 ✓ (.max(200) + ZodError → 400)
++- keep empty or omitted queries safe ✓ (.optional().default(''))

@@ -30,3 +30,9 @@
 +- trim surrounding whitespace ✓ (.trim())
 +- reject overly long input with 400 ✓ (.max(200) + ZodError → 400)
 +- keep empty or omitted queries safe ✓ (.optional().default(''))
+
+# 2026-06-27 16:37:24.328510
++Implementar JWT con middleware
+
+# 2026-06-27 16:37:24.329277
++Implementar JWT con middleware
